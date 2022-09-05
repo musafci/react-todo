@@ -1,9 +1,9 @@
 import React from "react";
-import {ListGroupItem, InputGroup, Button, List, Input} from "reactstrap";
+import {ListGroupItem, Button, Input, ListGroup} from "reactstrap";
 import PropTypes from 'prop-types';
 
-
-const ListView = ({todo, toggleSelect, toggleComplete}) => {
+// List Item Component
+const ListItem = ({todo, toggleSelect, toggleComplete}) => {
     return(
 
         <ListGroupItem className="d-flex align-item-center">
@@ -31,11 +31,34 @@ const ListView = ({todo, toggleSelect, toggleComplete}) => {
 }
 
 
-ListView.propTypes = {
+ListItem.propTypes = {
     todo: PropTypes.object.isRequired,
     toggleSelect: PropTypes.func.isRequired,
     toggleComplete: PropTypes.func.isRequired
 }
 
+
+// List view component
+const ListView = ({todos}) => {
+    return(
+        <ListGroup>
+            {todos.map(todo => (
+                <ListItem
+                    key={todo.id}
+                    todo={todo}
+                    toggleSelect={toggleSelect}
+                    toggleComplete={toggleComplete}
+                />
+            ))}
+        </ListGroup>
+    );
+}
+
+
+ListView.propTypes = {
+    todo: PropTypes.object.isRequired,
+    toggleSelect: PropTypes.func.isRequired,
+    toggleComplete: PropTypes.func.isRequired
+}
 
 export default ListView;
