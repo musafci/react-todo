@@ -39,7 +39,7 @@ ListItem.propTypes = {
 
 
 // List view component
-const ListView = ({todos}) => {
+const ListView = ({todos, toggleSelect, toggleComplete}) => {
     return(
         <ListGroup>
             {todos.map(todo => (
@@ -56,7 +56,7 @@ const ListView = ({todos}) => {
 
 
 ListView.propTypes = {
-    todo: PropTypes.object.isRequired,
+    todos: PropTypes.object.isRequired,
     toggleSelect: PropTypes.func.isRequired,
     toggleComplete: PropTypes.func.isRequired
 }
