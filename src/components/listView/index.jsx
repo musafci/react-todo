@@ -24,7 +24,9 @@ const ListItem = ({todo, toggleSelect, toggleComplete}) => {
                 className="ml-auto"
                 color={todo.isComplete ? 'danger' : 'success'}
                 onClick={()=> toggleComplete(todo.id)}
-            />
+            >
+                {todo.isComplete ? 'Completed' : 'Running'}
+            </Button>
 
         </ListGroupItem>
     );
