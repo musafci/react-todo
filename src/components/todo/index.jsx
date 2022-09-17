@@ -27,6 +27,14 @@ class Todos extends React.Component {
                 isComplete: false,
                 isSelect: false
             },
+            {
+                id: 'ccc',
+                text: 'todo three',
+                description: 'simple description three',
+                time: new Date(),
+                isComplete: false,
+                isSelect: false
+            },
         ],
         isOpenTodoForm: false,
         searchTerm: '',
@@ -76,15 +84,28 @@ class Todos extends React.Component {
     }
 
     clearSelected = () => {
-        
+        const todos = this.state.todos.filter(
+            todo => !todo.isSelect
+        )
+
+        this.setState({todos})
     }
 
     clearCompleted = () => {
-        
+        const todos = this.state.todos.filter(
+            todo => !todo.isComplete
+        )
+
+        this.setState({todos})
     }
 
     reset = () => {
-        
+        this.setState({
+            filter: 'all',
+            searchTerm: '',
+            view: 'list',
+            isOpenTodoForm: false,
+        })
     }
 
     createTodo = todo => {
