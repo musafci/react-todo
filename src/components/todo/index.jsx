@@ -56,8 +56,10 @@ class Todos extends React.Component {
         })
     }
 
-    handleSearch = () => {
-
+    handleSearch = (value) => {
+        this.setState({
+            searchTerm: value
+        })
     }
 
     handleFilter = () => {
@@ -93,16 +95,25 @@ class Todos extends React.Component {
         this.toggleForm();
     }
 
+    performSearch = () => {
+        return this.state.todos.filter(
+            todo => todo.text.toLowerCase()
+            .includes(this.state.searchTerm.toLowerCase())
+        )
+    }
+
     getView = () => {
+        const todos = this.performSearch();
+
         return this.state.view == 'list' ? (
             <ListView 
-                todos={this.state.todos} 
+                todos={todos} 
                 toggleSelect={this.toggleSelect} 
                 toggleComplete={this.toggleComplete}
             />
         ) : (
             <TableView
-                todos={this.state.todos} 
+                todos={todos} 
                 toggleSelect={this.toggleSelect} 
                 toggleComplete={this.toggleComplete}
             />
