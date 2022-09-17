@@ -31,6 +31,7 @@ class Todos extends React.Component {
         isOpenTodoForm: false,
         searchTerm: '',
         view: 'list',
+        filter: 'all',
     };
 
 
@@ -62,8 +63,10 @@ class Todos extends React.Component {
         })
     }
 
-    handleFilter = () => {
-
+    handleFilter = filter => {
+        this.setState({
+            filter
+        })
     }
 
     changeView = (event) => {
@@ -102,18 +105,31 @@ class Todos extends React.Component {
         )
     }
 
+    performFilter = todos => {
+        const {filter} = this.state
+
+        if(filter == 'completed') {
+            return todos.filter(todo => todo.isComplete)
+        } else if(filter == 'running') {
+            return todos.filter(todo => !todo.isComplete)
+        } else {
+            return todos;
+        }
+    }
+
     getView = () => {
         const todos = this.performSearch();
+        const todoss = this.performFilter(todos);
 
         return this.state.view == 'list' ? (
             <ListView 
-                todos={todos} 
+                todos={todoss} 
                 toggleSelect={this.toggleSelect} 
                 toggleComplete={this.toggleComplete}
             />
         ) : (
             <TableView
-                todos={todos} 
+                todos={todoss} 
                 toggleSelect={this.toggleSelect} 
                 toggleComplete={this.toggleComplete}
             />
