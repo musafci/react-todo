@@ -5,7 +5,7 @@ import {Label, Input} from "reactstrap";
 
 const ViewController = ({changeView, view}) => (
     <div className="d-flex">
-        <Label for="list-view" className="mr-4">
+        <Label for="list-view" className="me-4">
             <Input
                 type="radio"
                 name="view"
@@ -18,7 +18,7 @@ const ViewController = ({changeView, view}) => (
             List View
         </Label>
 
-        <Label for="table-view" className="mr-4">
+        <Label for="table-view" className="me-4">
             <Input
                 type="radio"
                 name="view"

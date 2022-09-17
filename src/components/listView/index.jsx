@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const ListItem = ({todo, toggleSelect, toggleComplete}) => {
     return(
 
-        <ListGroupItem className="d-flex align-item-center">
+        <ListGroupItem className="d-flex align-item-center align-center">
             
             <Input
                 type="checkbox"
@@ -15,7 +15,7 @@ const ListItem = ({todo, toggleSelect, toggleComplete}) => {
                 onChange={()=> toggleSelect(todo.id)}
             />
 
-            <div className="mx-3">
+            <div className="mx-3 d-flex">
                 <h4>{todo.text}</h4>
                 <p>{todo.time.toDateString()}</p>
             </div>

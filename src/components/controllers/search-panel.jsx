@@ -6,7 +6,7 @@ const SearchPanel = ({term, handleSearch, toggleForm}) => (
     <div className="d-flex">
         <Input
             placeholder="Enter Search Term"
-            className="mr-3"
+            className="me-3"
             value={term}
             onChange={e => handleSearch(e.target.value)}
         />
