@@ -30,6 +30,7 @@ class Todos extends React.Component {
         ],
         isOpenTodoForm: false,
         searchTerm: '',
+        view: 'list',
     };
 
 
@@ -59,6 +60,28 @@ class Todos extends React.Component {
 
     }
 
+    handleFilter = () => {
+
+    }
+
+    changeView = (event) => {
+        this.setState({
+            view: event.target.value
+        })
+    }
+
+    clearSelected = () => {
+        
+    }
+
+    clearCompleted = () => {
+        
+    }
+
+    reset = () => {
+        
+    }
+
     createTodo = todo => {
         todo.id = shortid.generate();
         todo.time = new Date();
@@ -70,6 +93,22 @@ class Todos extends React.Component {
         this.toggleForm();
     }
 
+    getView = () => {
+        return this.state.view == 'list' ? (
+            <ListView 
+                todos={this.state.todos} 
+                toggleSelect={this.toggleSelect} 
+                toggleComplete={this.toggleComplete}
+            />
+        ) : (
+            <TableView
+                todos={this.state.todos} 
+                toggleSelect={this.toggleSelect} 
+                toggleComplete={this.toggleComplete}
+            />
+        );
+    }
+
 
     render() {
         return(
@@ -78,24 +117,18 @@ class Todos extends React.Component {
                 
                 <Controller
                     term={this.state.searchTerm}
+                    view={this.state.view}
                     toggleForm={this.toggleForm}
                     handleSearch={this.handleSearch}
+                    handleFilter={this.handleFilter}
+                    changeView={this.changeView}
+                    clearSelected={this.clearSelected}
+                    clearCompleted={this.clearCompleted}
+                    reset={this.reset}
                 />
 
                 <div>
-                    <ListView 
-                        todos={this.state.todos} 
-                        toggleSelect={this.toggleSelect} 
-                        toggleComplete={this.toggleComplete}
-                    />
-                </div>
-
-                <div>
-                    <TableView
-                        todos={this.state.todos} 
-                        toggleSelect={this.toggleSelect} 
-                        toggleComplete={this.toggleComplete}
-                    />
+                    {this.getView()}
                 </div>
                 
                 <Modal
